@@ -1,12 +1,12 @@
-FROM alpine:3.9
-MAINTAINER Scott Mebberson (https://github.com/smebberson/docker-alpine)
+FROM alpine:3.12.0
+MAINTAINER Raymond XU
 
 # Add s6-overlay
-ENV S6_OVERLAY_VERSION=v1.22.1.0 \
+ENV S6_OVERLAY_VERSION=v2.0.0.1 \
     GO_DNSMASQ_VERSION=1.0.7
 
 RUN apk add --update --no-cache bind-tools curl libcap && \
-    curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz \
+    curl -sSL https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz \
     | tar xfz - -C / && \
     curl -sSL https://github.com/janeczku/go-dnsmasq/releases/download/${GO_DNSMASQ_VERSION}/go-dnsmasq-min_linux-amd64 -o /bin/go-dnsmasq && \
     chmod +x /bin/go-dnsmasq && \
